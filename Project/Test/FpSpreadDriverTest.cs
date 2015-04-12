@@ -8,6 +8,8 @@ using System.Windows.Forms;
 
 namespace Test
 {
+    //TODO 非同期と詳細
+
     [TestClass]
     public class FpSpreadDriverTest
     {
@@ -41,9 +43,6 @@ namespace Test
             Assert.AreEqual(1, _spread.ActiveSheetIndex);
         }
 
-        //ActiveSheetIndex 非同期
-
-
         [TestMethod]
         public void ActiveCell()
         {
@@ -53,10 +52,6 @@ namespace Test
             Assert.AreEqual(5, _spread.Sheets[0].ActiveCell.Column.Index);
             Assert.AreEqual(5, _spread.Sheets[0].ActiveCell.Column.Index2);
         }
-
-        //ActiveCell 複数範囲
-        //ActiveCell 選択状態クリアせず
-        //ActiveCell 非同期
 
         [TestMethod]
         public void EditText()

@@ -61,6 +61,24 @@ namespace Test
         }
 
         [TestMethod]
+        public void EditSelectedIndex()
+        {
+            _spread.EmulateChangeActiveSheet(1);
+            _spread.ActiveSheet.EmulateChangeActiveCell(0, 0, true);
+            _spread.EmualteEditSelectedIndex(1);
+            Assert.AreEqual("bbb", _spread.ActiveSheet.ActiveCell.Text);
+        }
+
+        [TestMethod]
+        public void EditCheckState()
+        {
+            _spread.EmulateChangeActiveSheet(1);
+            _spread.ActiveSheet.EmulateChangeActiveCell(0, 1, true);
+            _spread.EmualteEditCheckState(CheckState.Checked);
+            Assert.AreEqual("True", _spread.ActiveSheet.ActiveCell.Text);
+        }
+
+        [TestMethod]
         public void EmulateAddSelection()
         {
             _spread.ActiveSheet.EmulateAddSelection(1, 2, 3, 5);

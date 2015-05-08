@@ -177,9 +177,47 @@ namespace Friendly.FarPoint
         {
             spread.Select();
             spread.Focus();
-            spread.GetType().GetMethod("StartCellEditing").Invoke(spread, new object[] { EventArgs.Empty, true });
+            spread.GetType().GetMethod("StartCellEditing").Invoke(spread, new object[] { EventArgs.Empty, false });//@@@TODOこれどうしようかなー
             Control edit = (Control)spread.GetType().GetProperty("EditingControl").GetGetMethod().Invoke(spread, new object[] { });
             edit.Text = text;
+            spread.GetType().GetMethod("StopCellEditing").Invoke(spread, new object[0]);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="selectedIndex"></param>
+        public void EmualteEditSelectedIndex(int selectedIndex)
+        {
+            AppVar.App[GetType(), "EmualteEditSelectedIndex"](AppVar, selectedIndex);
+        }
+
+        static void EmualteEditSelectedIndex(Control spread, int selectedIndex)
+        {
+            spread.Select();
+            spread.Focus();
+            spread.GetType().GetMethod("StartCellEditing").Invoke(spread, new object[] { EventArgs.Empty, false });
+            Control edit = (Control)spread.GetType().GetProperty("EditingControl").GetGetMethod().Invoke(spread, new object[] { });
+            edit.GetType().GetProperty("SelectedIndex").GetSetMethod().Invoke(edit, new object[] { selectedIndex });
+            spread.GetType().GetMethod("StopCellEditing").Invoke(spread, new object[0]);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="checkState"></param>
+        public void EmualteEditCheckState(CheckState checkState)
+        {
+            AppVar.App[GetType(), "EmualteEditCheckState"](AppVar, checkState);
+        }
+
+        static void EmualteEditCheckState(Control spread, CheckState checkState)
+        {
+            spread.Select();
+            spread.Focus();
+            spread.GetType().GetMethod("StartCellEditing").Invoke(spread, new object[] { EventArgs.Empty, false });
+            Control edit = (Control)spread.GetType().GetProperty("EditingControl").GetGetMethod().Invoke(spread, new object[] { });
+            edit.GetType().GetProperty("CheckState").GetSetMethod().Invoke(edit, new object[] { checkState });
             spread.GetType().GetMethod("StopCellEditing").Invoke(spread, new object[0]);
         }
     }

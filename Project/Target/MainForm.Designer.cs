@@ -45,7 +45,7 @@
             this._spread.Sheets.AddRange(new FarPoint.Win.Spread.SheetView[] {
             this._spread_Sheet1,
             this._spread_Sheet2});
-            this._spread.Size = new System.Drawing.Size(284, 261);
+            this._spread.Size = new System.Drawing.Size(429, 261);
             this._spread.TabIndex = 0;
             this._spread.ActiveSheetIndex = 1;
             // 
@@ -63,7 +63,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(429, 261);
             this.Controls.Add(this._spread);
             this.Name = "MainForm";
             this.Text = "Target";

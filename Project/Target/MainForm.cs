@@ -39,21 +39,6 @@ namespace Target
             table.Rows.Add(300, "パインアップル", "果物");
 
             ((MultiColumnComboBoxCellType)_spread.Sheets[1].Cells[0, 15].CellType).DataSourceList = table;
-
-
-            /*
-            var sheetView = _spread.Sheets[1];
-            sheetView.AutoFilterMode = FarPoint.Win.Spread.AutoFilterMode.FilterBar;
-            sheetView.FilterBar.Cells[0].Border = new DoubleLineBorder(Color.Red);
-            sheetView.FilterBar.Cells[0].BackColor = Color.GreenYellow;
-            sheetView.FilterBar.DefaultStyle.Border = new DoubleLineBorder(Color.Yellow);*/
-            
-            //((FilterBarCellType)_spread.Sheets[1].Cells[0, 7].CellType).ContextMenuType = FilterBarContextMenuType.Text;
-
-
-         //   FpMultiOption o;
-          //  o.se
-        //    ((MaskCellType)_spread.Sheets[1].Cells[0, 14].CellType).Mask = "---";
         }
 
         void _spread_ButtonClicked(object sender, FarPoint.Win.Spread.EditorNotifyEventArgs e)
@@ -67,14 +52,6 @@ namespace Target
 
         void _spread_EditModeOn(object sender, EventArgs e)
         {
-            /*
-            MultiColumnEditor edt = _spread.EditingControl as MultiColumnEditor;
-            if (edt != null)
-            {
-                edt.Value = "200";
-                edt.ShowSubEditor(true);
-            }
-            */
             Debug.Print("EditModeOn " + _spread.ActiveSheet.ActiveCell.Row.Index + ", " + _spread.ActiveSheet.ActiveCell.Column.Index);
         }
 
@@ -90,9 +67,6 @@ namespace Target
 
         void _spread_EditChange(object sender, FarPoint.Win.Spread.EditorNotifyEventArgs e)
         {
-            //FarPoint.Win.Spread.CellType.RichTextEditor
-
-       //     string.IsNullOrEmpty(_spread.ActiveSheet.ActiveCell.Formula);
             Debug.Print("EditChange " + +e.Row + ", " + e.Column);
         }
 

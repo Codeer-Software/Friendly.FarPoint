@@ -136,14 +136,6 @@ namespace Test
 
             _spread.ActiveSheet.EmulateChangeActiveCell(0, 15, true);
 
-            /*
-            _spread.Dynamic().StartCellEditing(EventArgs.Empty, false);
-            _spread.Dynamic().EditingControl.Focus();
-            _spread.Dynamic().EditingControl.Select();
-            _spread.Dynamic().EditingControl.Value = "200";
-            _spread.Dynamic().EditingControl.ShowSubEditor(true);
-
-            _spread.Dynamic().StopCellEditing();*/
             _spread.EmualteEditValue("200");
             Assert.AreEqual("200", _spread.ActiveSheet.ActiveCell.Text);
 

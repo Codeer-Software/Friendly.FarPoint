@@ -142,16 +142,18 @@ namespace Friendly.FarPoint
         /// Modifies the text of a active cell.
         /// </summary>
         /// <param name="text">The text to use.</param>
+        /// <param name="formula">Exists formula.</param>
 #else
         /// <summary>
         /// アクティブなセルのテキストを変更します。
         /// </summary>
         /// <param name="text">テキスト。</param>
+        /// <param name="formula">数式があるかどうかを表すブール値。</param>
 #endif
-        public void EmualteEditText(string text)
+        public void EmualteEditText(string text, bool formula = false)
         {
 
-            AppVar.App[GetType(), "EmualteEditText"](AppVar, text);
+            AppVar.App[GetType(), "EmualteEditText"](AppVar, text, formula);
         }
 #if ENG
         /// <summary>
@@ -159,6 +161,7 @@ namespace Friendly.FarPoint
         /// Executes asynchronously. 
         /// </summary>
         /// <param name="text">The text to use.</param>
+        /// <param name="formula">Exists formula.</param>
         /// <param name="async">Asynchronous execution.</param>
 #else
         /// <summary>
@@ -166,20 +169,30 @@ namespace Friendly.FarPoint
         /// 非同期で実行します。
         /// </summary>
         /// <param name="text">テキスト。</param>
+        /// <param name="formula">数式があるかどうかを表すブール値。</param>
         /// <param name="async">非同期実行オブジェクト。</param>
 #endif
-        public void EmualteEditText(string text, Async async)
+        public void EmualteEditText(string text, bool formula, Async async)
         {
-            AppVar.App[GetType(), "EmualteEditText", async](AppVar, text);
+            AppVar.App[GetType(), "EmualteEditText", async](AppVar, formula, text);
         }
 
-        static void EmualteEditText(Control spread, string text)
+        static void EmualteEditText(Control spread, string text, bool formula)
         {
             spread.Select();
             spread.Focus();
-            spread.GetType().GetMethod("StartCellEditing").Invoke(spread, new object[] { EventArgs.Empty, false });//@@@TODOこれどうしようかなー
-            Control edit = (Control)spread.GetType().GetProperty("EditingControl").GetGetMethod().Invoke(spread, new object[] { });
-            edit.Text = text;
+            spread.GetType().GetMethod("StartCellEditing").Invoke(spread, new object[] { EventArgs.Empty, formula });
+            Control edit = (Control)spread.GetType().GetProperty("EditingControl").GetGetMethod().Invoke(spread, new object[0]);
+
+            if (edit.GetType().FullName == "FarPoint.Win.Spread.CellType.RichTextEditor")
+            {
+                edit.ResetText();
+                edit.GetType().GetMethod("AppendText").Invoke(edit, new object[] { text });
+            }
+            else
+            {
+                edit.Text = text;
+            }
             spread.GetType().GetMethod("StopCellEditing").Invoke(spread, new object[0]);
         }
 
@@ -197,8 +210,41 @@ namespace Friendly.FarPoint
             spread.Select();
             spread.Focus();
             spread.GetType().GetMethod("StartCellEditing").Invoke(spread, new object[] { EventArgs.Empty, false });
-            Control edit = (Control)spread.GetType().GetProperty("EditingControl").GetGetMethod().Invoke(spread, new object[] { });
+            Control edit = (Control)spread.GetType().GetProperty("EditingControl").GetGetMethod().Invoke(spread, new object[0]);
             edit.GetType().GetProperty("SelectedIndex").GetSetMethod().Invoke(edit, new object[] { selectedIndex });
+            spread.GetType().GetMethod("StopCellEditing").Invoke(spread, new object[0]);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        public void EmualteEditValue(object value)
+        {
+            AppVar.App[GetType(), "EmualteEditValue"](AppVar, value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        public void EmualteEditValue(AppVar value)
+        {
+            AppVar.App[GetType(), "EmualteEditValue"](AppVar, value);
+        }
+
+        static void EmualteEditValue(Control spread, object value)
+        {
+            spread.Select();
+            spread.Focus();
+            spread.GetType().GetMethod("StartCellEditing").Invoke(spread, new object[] { EventArgs.Empty, false });
+            Control edit = (Control)spread.GetType().GetProperty("EditingControl").GetGetMethod().Invoke(spread, new object[0]);
+            edit.GetType().GetProperty("Value").GetSetMethod().Invoke(edit, new object[] { value });
+            var m = edit.GetType().GetMethod("ShowSubEditor");
+            if (m != null)
+            {
+                m.Invoke(edit, new object[] { true });
+            }
             spread.GetType().GetMethod("StopCellEditing").Invoke(spread, new object[0]);
         }
 
@@ -216,7 +262,7 @@ namespace Friendly.FarPoint
             spread.Select();
             spread.Focus();
             spread.GetType().GetMethod("StartCellEditing").Invoke(spread, new object[] { EventArgs.Empty, false });
-            Control edit = (Control)spread.GetType().GetProperty("EditingControl").GetGetMethod().Invoke(spread, new object[] { });
+            Control edit = (Control)spread.GetType().GetProperty("EditingControl").GetGetMethod().Invoke(spread, new object[0]);
             edit.GetType().GetProperty("CheckState").GetSetMethod().Invoke(edit, new object[] { checkState });
             spread.GetType().GetMethod("StopCellEditing").Invoke(spread, new object[0]);
         }

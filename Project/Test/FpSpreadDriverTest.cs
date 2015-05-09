@@ -56,24 +56,107 @@ namespace Test
         [TestMethod]
         public void EditText()
         {
+            _spread.EmulateChangeActiveSheet(1);
+
+            _spread.ActiveSheet.EmulateChangeActiveCell(0, 0, true);
             _spread.EmualteEditText("abc");
             Assert.AreEqual("abc", _spread.ActiveSheet.ActiveCell.Text);
+
+            _spread.EmulateChangeActiveSheet(1);
+            _spread.ActiveSheet.EmulateChangeActiveCell(0, 3, true);
+            _spread.EmualteEditText("bbb");
+            Assert.AreEqual("bbb", _spread.ActiveSheet.ActiveCell.Text);
+
+            _spread.ActiveSheet.EmulateChangeActiveCell(0, 4, true);
+            _spread.EmualteEditText("1234");
+            Assert.AreEqual(((char)0xa5) + "1234", _spread.ActiveSheet.ActiveCell.Text);
+
+            _spread.ActiveSheet.EmulateChangeActiveCell(0, 5, true);
+            _spread.EmualteEditText("2015/01/01");
+            Assert.AreEqual("2015/01/01", _spread.ActiveSheet.ActiveCell.Text);
+
+            _spread.ActiveSheet.EmulateChangeActiveCell(0, 8, true);
+            _spread.EmualteEditText("2012/01/01 01:01:01");
+            Assert.AreEqual("2012/01/01 01:01:01", _spread.ActiveSheet.ActiveCell.Text);
+
+            _spread.ActiveSheet.EmulateChangeActiveCell(0, 9, true);
+            _spread.EmualteEditText("abc");
+            Assert.AreEqual("abc", _spread.ActiveSheet.ActiveCell.Text);
+
+            _spread.ActiveSheet.EmulateChangeActiveCell(0, 10, true);
+            _spread.EmualteEditText("abc");
+            Assert.AreEqual("abc", _spread.ActiveSheet.ActiveCell.Text);
+
+            _spread.ActiveSheet.EmulateChangeActiveCell(0, 14, true);
+            _spread.EmualteEditText("123");
+            Assert.AreEqual("123_", _spread.ActiveSheet.ActiveCell.Text);
+
+            _spread.ActiveSheet.EmulateChangeActiveCell(0, 17, true);
+            _spread.EmualteEditText("333");
+            Assert.AreEqual("333.00", _spread.ActiveSheet.ActiveCell.Text);
+
+            _spread.ActiveSheet.EmulateChangeActiveCell(0, 18, true);
+            _spread.EmualteEditText("50");
+            Assert.AreEqual("50%", _spread.ActiveSheet.ActiveCell.Text);
+
+
+            _spread.ActiveSheet.EmulateChangeActiveCell(0, 20, true);
+            _spread.EmualteEditText("222");
+            Assert.AreEqual("222", _spread.ActiveSheet.ActiveCell.Text);
+
+            _spread.ActiveSheet.EmulateChangeActiveCell(0, 21, true);
+            _spread.EmualteEditText("abc");
+            Assert.AreEqual("abc", _spread.ActiveSheet.ActiveCell.Text);
+
+            _spread.ActiveSheet.EmulateChangeActiveCell(0, 23, true);
+            _spread.EmualteEditText("efg");
+            Assert.AreEqual("efg", _spread.ActiveSheet.ActiveCell.Text);
         }
 
         [TestMethod]
         public void EditSelectedIndex()
         {
             _spread.EmulateChangeActiveSheet(1);
-            _spread.ActiveSheet.EmulateChangeActiveCell(0, 0, true);
+
+            //comboBox
+            _spread.ActiveSheet.EmulateChangeActiveCell(0, 3, true);
             _spread.EmualteEditSelectedIndex(1);
             Assert.AreEqual("bbb", _spread.ActiveSheet.ActiveCell.Text);
+
+            //listbox
+            _spread.ActiveSheet.EmulateChangeActiveCell(0, 13, true);
+            _spread.EmualteEditSelectedIndex(1);
+            Assert.AreEqual("b", _spread.ActiveSheet.ActiveCell.Text);
+        }
+
+        [TestMethod]
+        public void EditValue()
+        {
+            _spread.EmulateChangeActiveSheet(1);
+
+            _spread.ActiveSheet.EmulateChangeActiveCell(0, 15, true);
+
+            /*
+            _spread.Dynamic().StartCellEditing(EventArgs.Empty, false);
+            _spread.Dynamic().EditingControl.Focus();
+            _spread.Dynamic().EditingControl.Select();
+            _spread.Dynamic().EditingControl.Value = "200";
+            _spread.Dynamic().EditingControl.ShowSubEditor(true);
+
+            _spread.Dynamic().StopCellEditing();*/
+            _spread.EmualteEditValue("200");
+            Assert.AreEqual("200", _spread.ActiveSheet.ActiveCell.Text);
+
+            _spread.ActiveSheet.EmulateChangeActiveCell(0, 16, true);
+            _spread.EmualteEditValue(2);
+            Assert.AreEqual("3", _spread.ActiveSheet.ActiveCell.Text);
         }
 
         [TestMethod]
         public void EditCheckState()
         {
             _spread.EmulateChangeActiveSheet(1);
-            _spread.ActiveSheet.EmulateChangeActiveCell(0, 1, true);
+            _spread.ActiveSheet.EmulateChangeActiveCell(0, 2, true);
             _spread.EmualteEditCheckState(CheckState.Checked);
             Assert.AreEqual("True", _spread.ActiveSheet.ActiveCell.Text);
         }

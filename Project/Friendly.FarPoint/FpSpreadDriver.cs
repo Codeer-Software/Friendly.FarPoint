@@ -155,6 +155,7 @@ namespace Friendly.FarPoint
 
             AppVar.App[GetType(), "EmualteEditText"](AppVar, text, formula);
         }
+
 #if ENG
         /// <summary>
         /// Modifies the text of a active cell.
@@ -196,13 +197,48 @@ namespace Friendly.FarPoint
             spread.GetType().GetMethod("StopCellEditing").Invoke(spread, new object[0]);
         }
 
+#if ENG
         /// <summary>
-        /// 
+        /// Modifies the selected index of a active cell.
+        /// It is effective in cell's edit control has the SelectedIndex property.
+        /// (ComboBox)
         /// </summary>
-        /// <param name="selectedIndex"></param>
+        /// <param name="selectedIndex">selected index.</param>
+#else
+        /// <summary>
+        /// アクティブなセルの選択インデックスを変更します。
+        /// 編集コントロールがSelectedIndexプロパティーを持っているセルに有効です。
+        /// (コンボボックスのセルなど)
+        /// </summary>
+        /// <param name="selectedIndex">選択インデックス</param>
+#endif
         public void EmualteEditSelectedIndex(int selectedIndex)
         {
             AppVar.App[GetType(), "EmualteEditSelectedIndex"](AppVar, selectedIndex);
+        }
+
+#if ENG
+        /// <summary>
+        /// Modifies the selected index of a active cell.
+        /// It is effective in cell's edit control has the SelectedIndex property.
+        /// (ComboBox)
+        /// Executes asynchronously. 
+        /// </summary>
+        /// <param name="selectedIndex">selected index.</param>
+        /// <param name="async">Asynchronous execution.</param>
+#else
+        /// <summary>
+        /// アクティブなセルの選択インデックスを変更します。
+        /// 編集コントロールがSelectedIndexプロパティーを持っているセルに有効です。
+        /// (コンボボックスのセルなど)
+        /// 非同期で実行します。
+        /// </summary>
+        /// <param name="selectedIndex">選択インデックス</param>
+        /// <param name="async">非同期実行オブジェクト。</param>
+#endif
+        public void EmualteEditSelectedIndex(int selectedIndex, Async async)
+        {
+            AppVar.App[GetType(), "EmualteEditSelectedIndex", async](AppVar, selectedIndex);
         }
 
         static void EmualteEditSelectedIndex(Control spread, int selectedIndex)
@@ -215,22 +251,100 @@ namespace Friendly.FarPoint
             spread.GetType().GetMethod("StopCellEditing").Invoke(spread, new object[0]);
         }
 
+#if ENG
         /// <summary>
-        /// 
+        /// Modifies the check state of a active cell.
+        /// It is effective in cell's edit control has the CheckState property.
+        /// (CheckBox)
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="checkState"></param>
+#else
+        /// <summary>
+        /// アクティブなセルのチェックインデックスを変更します。
+        /// 編集コントロールがCheckStateプロパティーを持っているセルに有効です。
+        /// (チェックボックスのセルなど)
+        /// </summary>
+        /// <param name="checkState">check state.</param>
+#endif
+        public void EmualteEditCheckState(CheckState checkState)
+        {
+            AppVar.App[GetType(), "EmualteEditCheckState"](AppVar, checkState);
+        }
+
+
+#if ENG
+        /// <summary>
+        /// Modifies the check state of a active cell.
+        /// It is effective in cell's edit control has the CheckState property.
+        /// (CheckBox)
+        /// Executes asynchronously. 
+        /// </summary>
+        /// <param name="checkState">check state.</param>
+        /// <param name="async">Asynchronous execution.</param>
+#else
+        /// <summary>
+        /// アクティブなセルのチェックインデックスを変更します。
+        /// 編集コントロールがCheckStateプロパティーを持っているセルに有効です。
+        /// (チェックボックスのセルなど)
+        /// 非同期で実行します。
+        /// </summary>
+        /// <param name="checkState">チェック状態。</param>
+        /// <param name="async">非同期実行オブジェクト。</param>
+#endif
+        public void EmualteEditCheckState(CheckState checkState, Async async)
+        {
+            AppVar.App[GetType(), "EmualteEditCheckState", async](AppVar, checkState);
+        }
+
+        static void EmualteEditCheckState(Control spread, CheckState checkState)
+        {
+            spread.Select();
+            spread.Focus();
+            spread.GetType().GetMethod("StartCellEditing").Invoke(spread, new object[] { EventArgs.Empty, false });
+            Control edit = (Control)spread.GetType().GetProperty("EditingControl").GetGetMethod().Invoke(spread, new object[0]);
+            edit.GetType().GetProperty("CheckState").GetSetMethod().Invoke(edit, new object[] { checkState });
+            spread.GetType().GetMethod("StopCellEditing").Invoke(spread, new object[0]);
+        }
+
+#if ENG
+        /// <summary>
+        /// Modifies the value of a active cell.
+        /// It is effective in cell's edit control has the Value property.
+        /// </summary>
+        /// <param name="value">value.</param>
+#else
+        /// <summary>
+        /// アクティブなセルの値を変更します。
+        /// 編集コントロールがValueプロパティーを持っているセルに有効です。
+        /// </summary>
+        /// <param name="value">値</param>
+#endif
         public void EmualteEditValue(object value)
         {
             AppVar.App[GetType(), "EmualteEditValue"](AppVar, value);
         }
 
+
+#if ENG
         /// <summary>
-        /// 
+        /// Modifies the value of a active cell.
+        /// It is effective in cell's edit control has the Value property.
+        /// Executes asynchronously. 
         /// </summary>
-        /// <param name="value"></param>
-        public void EmualteEditValue(AppVar value)
+        /// <param name="value">value.</param>
+        /// <param name="async">Asynchronous execution.</param>
+#else
+        /// <summary>
+        /// アクティブなセルの値を変更します。
+        /// 編集コントロールがValueプロパティーを持っているセルに有効です。
+        /// 非同期で実行します。
+        /// </summary>
+        /// <param name="value">値</param>
+        /// <param name="async">非同期実行オブジェクト。</param>
+#endif
+        public void EmualteEditValue(object value, Async async)
         {
-            AppVar.App[GetType(), "EmualteEditValue"](AppVar, value);
+            AppVar.App[GetType(), "EmualteEditValue", async](AppVar, value);
         }
 
         static void EmualteEditValue(Control spread, object value)
@@ -245,25 +359,6 @@ namespace Friendly.FarPoint
             {
                 m.Invoke(edit, new object[] { true });
             }
-            spread.GetType().GetMethod("StopCellEditing").Invoke(spread, new object[0]);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="checkState"></param>
-        public void EmualteEditCheckState(CheckState checkState)
-        {
-            AppVar.App[GetType(), "EmualteEditCheckState"](AppVar, checkState);
-        }
-
-        static void EmualteEditCheckState(Control spread, CheckState checkState)
-        {
-            spread.Select();
-            spread.Focus();
-            spread.GetType().GetMethod("StartCellEditing").Invoke(spread, new object[] { EventArgs.Empty, false });
-            Control edit = (Control)spread.GetType().GetProperty("EditingControl").GetGetMethod().Invoke(spread, new object[0]);
-            edit.GetType().GetProperty("CheckState").GetSetMethod().Invoke(edit, new object[] { checkState });
             spread.GetType().GetMethod("StopCellEditing").Invoke(spread, new object[0]);
         }
     }

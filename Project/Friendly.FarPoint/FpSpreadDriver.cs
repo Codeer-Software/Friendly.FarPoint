@@ -1,6 +1,5 @@
 ﻿using Codeer.Friendly;
 using Codeer.Friendly.Windows;
-using Codeer.Friendly.Windows.Grasp;
 using System;
 using System.Windows.Forms;
 
@@ -63,19 +62,6 @@ namespace Friendly.FarPoint
         /// </summary>
 #endif
         public SheetViewDriver ActiveSheet { get { return new SheetViewDriver(AppVar["ActiveSheet"]()); } }
-
-#if ENG
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="src">WindowControl object for the underlying control.</param>
-#else
-        /// <summary>
-        /// コンストラクタです。
-        /// </summary>
-        /// <param name="src">元となるウィンドウコントロールです。</param>
-#endif
-        public FpSpreadDriver(WindowControl src) : this(src.AppVar) { }
 
 #if ENG
         /// <summary>

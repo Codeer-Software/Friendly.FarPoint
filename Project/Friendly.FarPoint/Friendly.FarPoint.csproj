@@ -59,6 +59,7 @@
     <Compile Include="CellsDriver.cs" />
     <Compile Include="ColumnDriver.cs" />
     <Compile Include="FpSpreadDriver.cs" />
+    <Compile Include="Inside\Invoker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RowDriver.cs" />
     <Compile Include="SheetViewCollectionDriver.cs" />

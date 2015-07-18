@@ -1,5 +1,6 @@
 ﻿using Codeer.Friendly;
 using Codeer.Friendly.Windows;
+using Friendly.FarPoint.Inside;
 using System;
 using System.Windows.Forms;
 
@@ -120,7 +121,7 @@ namespace Friendly.FarPoint
         {
             spread.Select();
             spread.Focus();
-            spread.GetType().GetProperty("ActiveSheetIndex").GetSetMethod().Invoke(spread, new object[] { index });
+            Invoker.Call(spread, "set_ActiveSheetIndex", index);
         }
 
 #if ENG
@@ -168,19 +169,19 @@ namespace Friendly.FarPoint
         {
             spread.Select();
             spread.Focus();
-            spread.GetType().GetMethod("StartCellEditing").Invoke(spread, new object[] { EventArgs.Empty, formula });
-            Control edit = (Control)spread.GetType().GetProperty("EditingControl").GetGetMethod().Invoke(spread, new object[0]);
+            Invoker.Call(spread, "StartCellEditing", EventArgs.Empty, formula);
+            Control edit = (Control)Invoker.Call(spread, "get_EditingControl");
 
             if (edit.GetType().FullName == "FarPoint.Win.Spread.CellType.RichTextEditor")
             {
                 edit.ResetText();
-                edit.GetType().GetMethod("AppendText").Invoke(edit, new object[] { text });
+                Invoker.Call(edit, "AppendText", text);
             }
             else
             {
                 edit.Text = text;
             }
-            spread.GetType().GetMethod("StopCellEditing").Invoke(spread, new object[0]);
+            Invoker.Call(spread, "StopCellEditing");
         }
 
 #if ENG
@@ -231,10 +232,10 @@ namespace Friendly.FarPoint
         {
             spread.Select();
             spread.Focus();
-            spread.GetType().GetMethod("StartCellEditing").Invoke(spread, new object[] { EventArgs.Empty, false });
-            Control edit = (Control)spread.GetType().GetProperty("EditingControl").GetGetMethod().Invoke(spread, new object[0]);
-            edit.GetType().GetProperty("SelectedIndex").GetSetMethod().Invoke(edit, new object[] { selectedIndex });
-            spread.GetType().GetMethod("StopCellEditing").Invoke(spread, new object[0]);
+            Invoker.Call(spread, "StartCellEditing", EventArgs.Empty, false);
+            Control edit = (Control)Invoker.Call(spread, "get_EditingControl");
+            Invoker.Call(edit, "set_SelectedIndex", selectedIndex);
+            Invoker.Call(spread, "StopCellEditing");
         }
 
 #if ENG
@@ -286,10 +287,10 @@ namespace Friendly.FarPoint
         {
             spread.Select();
             spread.Focus();
-            spread.GetType().GetMethod("StartCellEditing").Invoke(spread, new object[] { EventArgs.Empty, false });
-            Control edit = (Control)spread.GetType().GetProperty("EditingControl").GetGetMethod().Invoke(spread, new object[0]);
-            edit.GetType().GetProperty("CheckState").GetSetMethod().Invoke(edit, new object[] { checkState });
-            spread.GetType().GetMethod("StopCellEditing").Invoke(spread, new object[0]);
+            Invoker.Call(spread, "StartCellEditing", EventArgs.Empty, false);
+            Control edit = (Control)Invoker.Call(spread, "get_EditingControl");
+            Invoker.Call(edit, "set_CheckState", checkState);
+            Invoker.Call(spread, "StopCellEditing");
         }
 
 #if ENG
@@ -309,7 +310,6 @@ namespace Friendly.FarPoint
         {
             AppVar.App[GetType(), "EmualteEditValue"](AppVar, value);
         }
-
 
 #if ENG
         /// <summary>
@@ -337,15 +337,15 @@ namespace Friendly.FarPoint
         {
             spread.Select();
             spread.Focus();
-            spread.GetType().GetMethod("StartCellEditing").Invoke(spread, new object[] { EventArgs.Empty, false });
-            Control edit = (Control)spread.GetType().GetProperty("EditingControl").GetGetMethod().Invoke(spread, new object[0]);
+            Invoker.Call(spread, "StartCellEditing", EventArgs.Empty, false);
+            Control edit = (Control)Invoker.Call(spread, "get_EditingControl"); 
             edit.GetType().GetProperty("Value").GetSetMethod().Invoke(edit, new object[] { value });
             var m = edit.GetType().GetMethod("ShowSubEditor");
             if (m != null)
             {
                 m.Invoke(edit, new object[] { true });
             }
-            spread.GetType().GetMethod("StopCellEditing").Invoke(spread, new object[0]);
+            Invoker.Call(spread, "StopCellEditing");
         }
     }
 }

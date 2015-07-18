@@ -1,4 +1,5 @@
 ﻿using Codeer.Friendly;
+using Friendly.FarPoint.Inside;
 using System;
 using System.Windows.Forms;
 
@@ -116,7 +117,7 @@ namespace Friendly.FarPoint
         static void EmulateChangeActiveCell(object sheet, int row, int col, bool clearSelection)
         {
             SelectSpread(sheet);
-            sheet.GetType().GetMethod("SetActiveCell", new Type[] { typeof(int), typeof(int), typeof(bool) }).Invoke(sheet, new object[] { row, col, clearSelection });
+            Invoker.Call(sheet, "SetActiveCell", row, col, clearSelection);
         }
 
 #if ENG
@@ -154,7 +155,7 @@ namespace Friendly.FarPoint
         static void EmulateClearSelection(object sheet)
         {
             SelectSpread(sheet);
-            sheet.GetType().GetMethod("ClearSelection").Invoke(sheet, new object[0]);
+            Invoker.Call(sheet, "ClearSelection");
         }
 
 #if ENG
@@ -210,7 +211,7 @@ namespace Friendly.FarPoint
         static void EmulateAddSelection(object sheet, int row, int col, int rowCount, int columnCount)
         {
             SelectSpread(sheet);
-            sheet.GetType().GetMethod("AddSelection").Invoke(sheet, new object[] { row, col, rowCount, columnCount });
+            Invoker.Call(sheet, "AddSelection", row, col, rowCount, columnCount);
         }
 
 #if ENG
@@ -265,7 +266,7 @@ namespace Friendly.FarPoint
         static void EmulateRemoveSelection(object sheet, int row, int col, int rowCount, int columnCount)
         {
             SelectSpread(sheet);
-            sheet.GetType().GetMethod("RemoveSelection").Invoke(sheet, new object[] { row, col, rowCount, columnCount });
+            Invoker.Call(sheet, "RemoveSelection", row, col, rowCount, columnCount);
         }
 
         static void SelectSpread(object sheet)

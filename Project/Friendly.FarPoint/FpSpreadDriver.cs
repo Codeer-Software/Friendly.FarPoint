@@ -1,5 +1,6 @@
 ﻿using Codeer.Friendly;
 using Codeer.Friendly.Windows;
+using Codeer.Friendly.Windows.Grasp;
 using Friendly.FarPoint.Inside;
 using System;
 using System.Windows.Forms;
@@ -15,19 +16,8 @@ namespace Friendly.FarPoint
     /// TypeがFarPoint.Win.Spread.FpSpreadに対応した操作を提供します。
     /// </summary>
 #endif
-    public class FpSpreadDriver : IAppVarOwner
+    public class FpSpreadDriver : WindowControl
     {
-#if ENG
-        /// <summary>
-        /// Returns an AppVar for a .NET object for the corresponding window.
-        /// </summary>
-#else
-        /// <summary>
-        /// 対応するウィンドウの.Netのオブジェクトが格納されたAppVarを取得します。
-        /// </summary>
-#endif
-        public AppVar AppVar { get; set; }
-
 #if ENG
         /// <summary>
         /// Active sheet index.
@@ -75,9 +65,8 @@ namespace Friendly.FarPoint
         /// </summary>
         /// <param name="appVar">アプリケーション内変数。</param>
 #endif
-        public FpSpreadDriver(AppVar appVar)
+        public FpSpreadDriver(AppVar appVar) : base(appVar)
         {
-            AppVar = appVar;
             WindowsAppExpander.LoadAssembly((WindowsAppFriend)AppVar.App, typeof(FpSpreadDriver).Assembly);
         }
 
@@ -137,10 +126,10 @@ namespace Friendly.FarPoint
         /// <param name="text">テキスト。</param>
         /// <param name="formula">数式があるかどうかを表すブール値。</param>
 #endif
-        public void EmualteEditText(string text, bool formula = false)
+        public void EmulateEditText(string text, bool formula = false)
         {
 
-            AppVar.App[GetType(), "EmualteEditText"](AppVar, text, formula);
+            AppVar.App[GetType(), "EmulateEditText"](AppVar, text, formula);
         }
 
 #if ENG
@@ -160,12 +149,12 @@ namespace Friendly.FarPoint
         /// <param name="formula">数式があるかどうかを表すブール値。</param>
         /// <param name="async">非同期実行オブジェクト。</param>
 #endif
-        public void EmualteEditText(string text, bool formula, Async async)
+        public void EmulateEditText(string text, bool formula, Async async)
         {
-            AppVar.App[GetType(), "EmualteEditText", async](AppVar, formula, text);
+            AppVar.App[GetType(), "EmulateEditText", async](AppVar, formula, text);
         }
 
-        static void EmualteEditText(Control spread, string text, bool formula)
+        static void EmulateEditText(Control spread, string text, bool formula)
         {
             spread.Select();
             spread.Focus();
@@ -199,9 +188,9 @@ namespace Friendly.FarPoint
         /// </summary>
         /// <param name="selectedIndex">選択インデックス</param>
 #endif
-        public void EmualteEditSelectedIndex(int selectedIndex)
+        public void EmulateEditSelectedIndex(int selectedIndex)
         {
-            AppVar.App[GetType(), "EmualteEditSelectedIndex"](AppVar, selectedIndex);
+            AppVar.App[GetType(), "EmulateEditSelectedIndex"](AppVar, selectedIndex);
         }
 
 #if ENG
@@ -223,12 +212,12 @@ namespace Friendly.FarPoint
         /// <param name="selectedIndex">選択インデックス</param>
         /// <param name="async">非同期実行オブジェクト。</param>
 #endif
-        public void EmualteEditSelectedIndex(int selectedIndex, Async async)
+        public void EmulateEditSelectedIndex(int selectedIndex, Async async)
         {
-            AppVar.App[GetType(), "EmualteEditSelectedIndex", async](AppVar, selectedIndex);
+            AppVar.App[GetType(), "EmulateEditSelectedIndex", async](AppVar, selectedIndex);
         }
 
-        static void EmualteEditSelectedIndex(Control spread, int selectedIndex)
+        static void EmulateEditSelectedIndex(Control spread, int selectedIndex)
         {
             spread.Select();
             spread.Focus();
@@ -253,9 +242,9 @@ namespace Friendly.FarPoint
         /// </summary>
         /// <param name="checkState">check state.</param>
 #endif
-        public void EmualteEditCheckState(CheckState checkState)
+        public void EmulateEditCheckState(CheckState checkState)
         {
-            AppVar.App[GetType(), "EmualteEditCheckState"](AppVar, checkState);
+            AppVar.App[GetType(), "EmulateEditCheckState"](AppVar, checkState);
         }
 
 
@@ -278,12 +267,12 @@ namespace Friendly.FarPoint
         /// <param name="checkState">チェック状態。</param>
         /// <param name="async">非同期実行オブジェクト。</param>
 #endif
-        public void EmualteEditCheckState(CheckState checkState, Async async)
+        public void EmulateEditCheckState(CheckState checkState, Async async)
         {
-            AppVar.App[GetType(), "EmualteEditCheckState", async](AppVar, checkState);
+            AppVar.App[GetType(), "EmulateEditCheckState", async](AppVar, checkState);
         }
 
-        static void EmualteEditCheckState(Control spread, CheckState checkState)
+        static void EmulateEditCheckState(Control spread, CheckState checkState)
         {
             spread.Select();
             spread.Focus();
@@ -306,9 +295,9 @@ namespace Friendly.FarPoint
         /// </summary>
         /// <param name="value">値</param>
 #endif
-        public void EmualteEditValue(object value)
+        public void EmulateEditValue(object value)
         {
-            AppVar.App[GetType(), "EmualteEditValue"](AppVar, value);
+            AppVar.App[GetType(), "EmulateEditValue"](AppVar, value);
         }
 
 #if ENG
@@ -328,12 +317,12 @@ namespace Friendly.FarPoint
         /// <param name="value">値</param>
         /// <param name="async">非同期実行オブジェクト。</param>
 #endif
-        public void EmualteEditValue(object value, Async async)
+        public void EmulateEditValue(object value, Async async)
         {
-            AppVar.App[GetType(), "EmualteEditValue", async](AppVar, value);
+            AppVar.App[GetType(), "EmulateEditValue", async](AppVar, value);
         }
 
-        static void EmualteEditValue(Control spread, object value)
+        static void EmulateEditValue(Control spread, object value)
         {
             spread.Select();
             spread.Focus();

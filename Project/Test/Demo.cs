@@ -55,7 +55,7 @@ namespace Test
             //  中身を使えば拡張可能
             _spread.EmulateChangeActiveSheet(1);
             _spread.ActiveSheet.EmulateChangeActiveCell(1, 2, true);
-            _spread.EmualteEditText("abc");
+            _spread.EmulateEditText("abc");
         }
     }
 }

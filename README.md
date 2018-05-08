@@ -5,15 +5,21 @@ This library is a layer on top of
 Friendly, so you must learn that first.
 But it is very easy to learn.
 
-http://www.english.codeer.co.jp/test-automation/friendly-fundamental  
+https://github.com/Codeer-Software/Friendly.Windows 
 
-============================
+## Getting Started
+Install Friendly.XamControls from NuGet
+
+    Install-Package Friendly.FarPoint
+https://github.com/Codeer-Software/Friendly.FarPoint
+
+***
 Friendly.FarPoint defines the following classes.   
 They can operate the control easily from a separate process.  
 
 * FpSpreadDriver
 
-============================
+***
 ```cs  
 //sample  
 var process = Process.GetProcessesByName("Target")[0];  
@@ -56,12 +62,10 @@ using (var app = new WindowsAppFriend(process))
     spread.EmualteEditCheckState(CheckState.Checked);
 }
 ```
+### More samples.
+https://github.com/Codeer-Software/Friendly.FarPoint/tree/master/Project/Test
 
-============================
-Download from NuGet.  
-https://www.nuget.org/packages/Friendly.FarPoint/
-
-============================
+***
 For other GUI types, use the following libraries:
 
 * For Win32.  
@@ -81,7 +85,7 @@ https://www.nuget.org/packages/Friendly.XamControls/
 https://www.nuget.org/packages/Friendly.C1.Win/  
 https://www.nuget.org/packages/Friendly.FarPoint/  
 
-============================
+***
 If you use PinInterface, you map control simple.  
 https://www.nuget.org/packages/VSHTC.Friendly.PinInterface/
 

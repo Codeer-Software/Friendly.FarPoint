@@ -74,8 +74,8 @@ https://www.nuget.org/packages/Codeer.Friendly.Windows.NativeStandardControls/
 * For WinForms.  
 https://www.nuget.org/packages/Ong.Friendly.FormsStandardControls/  
 
-* For WPF.
-https://www.nuget.org/packages/RM.Friendly.WPFStandardControls/  
+* For WPF.  
+https://www.nuget.org/packages/RM.Friendly.WPFStandardControls/
 
 * For getting the target window.  
 https://www.nuget.org/packages/Codeer.Friendly.Windows.Grasp/  

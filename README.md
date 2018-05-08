@@ -8,7 +8,7 @@ But it is very easy to learn.
 https://github.com/Codeer-Software/Friendly.Windows 
 
 ## Getting Started
-Install Friendly.XamControls from NuGet
+Install Friendly.FarPoint from NuGet
 
     Install-Package Friendly.FarPoint
 https://github.com/Codeer-Software/Friendly.FarPoint

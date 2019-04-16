@@ -27,8 +27,12 @@ namespace Target
             _spread.EditModeOn += _spread_EditModeOn;
             _spread.EditorFocused += _spread_EditorFocused;
             _spread.CellClick += _spread_CellClick;
+            _spread.HyperLinkClicked += _spread_HyperLinkClicked1;
 
             _spread.ButtonClicked += _spread_ButtonClicked;
+
+            _spread.ActiveSheetChanged += _spread_ActiveSheetChanged;
+            _spread.EnterCell += _spread_EnterCell;
 
             DataTable table = new DataTable();
             table.Columns.Add("Code", Type.GetType("System.String"));
@@ -41,8 +45,22 @@ namespace Target
             ((MultiColumnComboBoxCellType)_spread.Sheets[1].Cells[0, 15].CellType).DataSourceList = table;
         }
 
+        private void _spread_HyperLinkClicked1(object sender, FarPoint.Win.Spread.HyperLinkClickedEventArgs e)
+        {
+            _spread.ActiveSheet.Cells[1, 11].Text = "Clicked";
+        }
+
+        private void _spread_EnterCell(object sender, FarPoint.Win.Spread.EnterCellEventArgs e)
+        {
+        }
+
+        private void _spread_ActiveSheetChanged(object sender, EventArgs e)
+        {
+        }
+
         void _spread_ButtonClicked(object sender, FarPoint.Win.Spread.EditorNotifyEventArgs e)
         {
+            _spread.ActiveSheet.Cells[1, 1].Text = "Clicked";
         }
 
         void _spread_EditorFocused(object sender, FarPoint.Win.Spread.EditorNotifyEventArgs e)

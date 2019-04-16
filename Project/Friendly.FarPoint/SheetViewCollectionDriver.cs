@@ -13,6 +13,7 @@ namespace Friendly.FarPoint
 #endif
     public class SheetViewCollectionDriver : IAppVarOwner
     {
+        FpSpreadDriver _spread;
 #if ENG
         /// <summary>
         /// Returns an AppVar for a .NET object for the corresponding window.
@@ -48,10 +49,11 @@ namespace Friendly.FarPoint
         /// <param name="index">インデックス。</param>
         /// <returns>SheetViewのドライバです。</returns>
 #endif
-        public SheetViewDriver this[int index] { get { return new SheetViewDriver(AppVar["[]"](index)); } }
+        public SheetViewDriver this[int index] { get { return new SheetViewDriver(_spread, AppVar["[]"](index)); } }
 
-        internal SheetViewCollectionDriver(AppVar appVar)
+        internal SheetViewCollectionDriver(FpSpreadDriver spread, AppVar appVar)
         {
+            _spread = spread;
             AppVar = appVar;
         }
     }

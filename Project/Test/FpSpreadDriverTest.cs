@@ -99,7 +99,6 @@ namespace Test
             _spread.EmulateEditText("50");
             Assert.AreEqual("50%", _spread.ActiveSheet.ActiveCell.Text);
 
-
             _spread.ActiveSheet.EmulateChangeActiveCell(0, 20, true);
             _spread.EmulateEditText("222");
             Assert.AreEqual("222", _spread.ActiveSheet.ActiveCell.Text);
@@ -108,9 +107,21 @@ namespace Test
             _spread.EmulateEditText("abc");
             Assert.AreEqual("abc", _spread.ActiveSheet.ActiveCell.Text);
 
+            _spread.ActiveSheet.EmulateChangeActiveCell(0, 22, true);
+            _spread.EmulateEditText("5");
+
             _spread.ActiveSheet.EmulateChangeActiveCell(0, 23, true);
             _spread.EmulateEditText("efg");
             Assert.AreEqual("efg", _spread.ActiveSheet.ActiveCell.Text);
+        }
+
+        [TestMethod]
+        public void EmulateButtonClick()
+        {
+            _spread.EmulateChangeActiveSheet(1);
+            _spread.ActiveSheet.EmulateChangeActiveCell(0, 1);
+            _spread.EmulateButtonClick();
+            Assert.AreEqual("Clicked", _spread.ActiveSheet.Cells[1, 1].Text);
         }
 
         [TestMethod]
@@ -136,7 +147,7 @@ namespace Test
 
             _spread.ActiveSheet.EmulateChangeActiveCell(0, 15, true);
 
-            _spread.EmulateEditValue("200");
+            _spread.EmulateEditValue(200);
             Assert.AreEqual("200", _spread.ActiveSheet.ActiveCell.Text);
 
             _spread.ActiveSheet.EmulateChangeActiveCell(0, 16, true);

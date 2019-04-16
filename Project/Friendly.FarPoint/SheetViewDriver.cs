@@ -16,6 +16,8 @@ namespace Friendly.FarPoint
 #endif
     public class SheetViewDriver : IAppVarOwner
     {
+        internal FpSpreadDriver Spread { get; }
+
 #if ENG
         /// <summary>
         /// Returns an AppVar for a .NET object for the corresponding window.
@@ -36,7 +38,7 @@ namespace Friendly.FarPoint
         /// Cellsのドライバです。
         /// </summary>
 #endif
-        public CellsDriver Cells { get { return new CellsDriver(AppVar["Cells"]()); } }
+        public CellsDriver Cells { get { return new CellsDriver(this, AppVar["Cells"]()); } }
 
 #if ENG
         /// <summary>
@@ -47,10 +49,34 @@ namespace Friendly.FarPoint
         /// アクティブなセルです。
         /// </summary>
 #endif
-        public CellDriver ActiveCell { get { return new CellDriver(AppVar["ActiveCell"]()); } }
+        public CellDriver ActiveCell { get { return new CellDriver(this, AppVar["ActiveCell"]()); } }
 
-        internal SheetViewDriver(AppVar appVar)
+#if ENG
+        /// <summary>
+        /// Count of frozen row.
+        /// </summary>
+#else
+        /// <summary>
+        /// 非スクロール行の数。
+        /// </summary>
+#endif
+        public int FrozenRowCount { get { return (int)AppVar["FrozenRowCount"]().Core; } }
+
+
+#if ENG
+        /// <summary>
+        /// Count of frozen column.
+        /// </summary>
+#else
+        /// <summary>
+        /// 非スクロール列の数。
+        /// </summary>
+#endif
+        public int FrozenColumnCount { get { return (int)AppVar["FrozenColumnCount"]().Core; } }
+
+        internal SheetViewDriver(FpSpreadDriver spread, AppVar appVar)
         {
+            Spread = spread;
             AppVar = appVar;
         }
 
@@ -85,7 +111,7 @@ namespace Friendly.FarPoint
         /// <param name="col">列。</param>
         /// <param name="clearSelection">選択範囲をクリアするかどうか。</param>
 #endif
-        public void EmulateChangeActiveCell(int row, int col, bool clearSelection)
+        public void EmulateChangeActiveCell(int row, int col, bool clearSelection = true)
         {
             AppVar.App[GetType(), "EmulateChangeActiveCell"](AppVar, row, col, clearSelection);
         }

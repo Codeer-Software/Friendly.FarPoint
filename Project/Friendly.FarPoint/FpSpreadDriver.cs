@@ -1,8 +1,10 @@
 ﻿using Codeer.Friendly;
 using Codeer.Friendly.Windows;
 using Codeer.Friendly.Windows.Grasp;
+using Codeer.TestAssistant.GeneratorToolKit;
 using Friendly.FarPoint.Inside;
 using System;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Friendly.FarPoint
@@ -16,6 +18,7 @@ namespace Friendly.FarPoint
     /// TypeがFarPoint.Win.Spread.FpSpreadに対応した操作を提供します。
     /// </summary>
 #endif
+    [ControlDriver(TypeFullName = "FarPoint.Win.Spread.FpSpread")]
     public class FpSpreadDriver : WindowControl
     {
 #if ENG
@@ -41,7 +44,7 @@ namespace Friendly.FarPoint
         /// SheetViewCollectionのドライバです。
         /// </summary>
 #endif
-        public SheetViewCollectionDriver Sheets { get { return new SheetViewCollectionDriver(AppVar["Sheets"]()); } }
+        public SheetViewCollectionDriver Sheets { get { return new SheetViewCollectionDriver(this, AppVar["Sheets"]()); } }
 
 #if ENG
         /// <summary>
@@ -52,7 +55,7 @@ namespace Friendly.FarPoint
         /// アクティブなシートです。
         /// </summary>
 #endif
-        public SheetViewDriver ActiveSheet { get { return new SheetViewDriver(AppVar["ActiveSheet"]()); } }
+        public SheetViewDriver ActiveSheet { get { return new SheetViewDriver(this, AppVar["ActiveSheet"]()); } }
 
 #if ENG
         /// <summary>
@@ -336,5 +339,46 @@ namespace Friendly.FarPoint
             }
             Invoker.Call(spread, "StopCellEditing");
         }
+
+#if ENG
+        /// <summary>
+        /// Click cell button.
+        /// </summary>
+#else
+        /// <summary>
+        /// セルボタンをクリックします。
+        /// </summary>
+#endif
+        public void EmulateButtonClick()
+        {
+            AppVar.App[GetType(), "EmulateButtonClick"](AppVar);
+        }
+
+#if ENG
+        /// <summary>
+        /// Click cell button.
+        /// </summary>
+        /// <param name="async">Asynchronous execution.</param>
+#else
+        /// <summary>
+        /// セルボタンをクリックします。
+        /// </summary>
+        /// <param name="async">非同期実行オブジェクト。</param>
+#endif
+        public void EmulateButtonClick(Async async)
+        {
+            AppVar.App[GetType(), "EmulateButtonClick", async](AppVar);
+        }
+
+        static void EmulateButtonClick(Control spread)
+        {
+            spread.Select();
+            spread.Focus();
+            Invoker.Call(spread, "StartCellEditing", EventArgs.Empty, false);
+            Control edit = (Control)Invoker.Call(spread, "get_EditingControl");
+            Invoker.Call(edit, "PerformClick");
+            Invoker.Call(spread, "StopCellEditing");
+        }
     }
 }
+

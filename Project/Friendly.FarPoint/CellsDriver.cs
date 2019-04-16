@@ -13,6 +13,8 @@ namespace Friendly.FarPoint
 #endif
     public class CellsDriver : IAppVarOwner
     {
+        SheetViewDriver _sheet;
+
 #if ENG
         /// <summary>
         /// Returns an AppVar for a .NET object for the corresponding window.
@@ -37,7 +39,7 @@ namespace Friendly.FarPoint
         /// <param name="tag">タグ。</param>
         /// <returns>SheetViewのドライバです。</returns>
 #endif
-        public CellDriver this[string tag] { get { return new CellDriver(AppVar["[]"](tag)); } }
+        public CellDriver this[string tag] { get { return new CellDriver(_sheet, AppVar["[]"](tag)); } }
 
 #if ENG
         /// <summary>
@@ -54,7 +56,7 @@ namespace Friendly.FarPoint
         /// <param name="col">列。</param>
         /// <returns>SheetViewのドライバです。</returns>
 #endif
-        public CellDriver this[int row, int col] { get { return new CellDriver(AppVar["[,]"](row, col)); } }
+        public CellDriver this[int row, int col] { get { return new CellDriver(_sheet, AppVar["[,]"](row, col)); } }
 
 #if ENG
         /// <summary>
@@ -75,10 +77,11 @@ namespace Friendly.FarPoint
         /// <param name="col2">範囲最終列。</param>
         /// <returns>SheetViewのドライバです。</returns>
 #endif
-        public CellDriver this[int row, int col, int row2, int col2] { get { return new CellDriver(AppVar["[,,,]"](row, col, row2, col2)); } }
+        public CellDriver this[int row, int col, int row2, int col2] { get { return new CellDriver(_sheet, AppVar["[,,,]"](row, col, row2, col2)); } }
 
-        internal CellsDriver(AppVar appVar)
+        internal CellsDriver(SheetViewDriver sheet, AppVar appVar)
         {
+            _sheet = sheet;
             AppVar = appVar;
         }
     }

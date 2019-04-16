@@ -1,13 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{A306BCF0-FB5B-420E-8DC0-FA4FC2E31338}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Friendly.FarPoint", "Friendly.FarPoint\Friendly.FarPoint.csproj", "{2BAB5B54-81CC-4EA5-8FBC-7A584AE5ABDE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E05C03AC-C782-46BA-A43F-D66B06421790} = {E05C03AC-C782-46BA-A43F-D66B06421790}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Target", "Target\Target.csproj", "{454E84CD-07ED-4B2F-AEF3-F678FDFC3B59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Friendly.FarPoint.Generator", "Friendly.FarPoint.Generator\Friendly.FarPoint.Generator.csproj", "{E05C03AC-C782-46BA-A43F-D66B06421790}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NUget", "NUget", "{2F1FF8C8-8AAC-484E-A087-FCFE7331AE9E}"
+	ProjectSection(SolutionItems) = preProject
+		Nuget\Friendly.FarPoint.nuspec = Nuget\Friendly.FarPoint.nuspec
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,8 +44,17 @@ Global
 		{454E84CD-07ED-4B2F-AEF3-F678FDFC3B59}.Release|Any CPU.Build.0 = Release|Any CPU
 		{454E84CD-07ED-4B2F-AEF3-F678FDFC3B59}.Release-ENG|Any CPU.ActiveCfg = Release-ENG|Any CPU
 		{454E84CD-07ED-4B2F-AEF3-F678FDFC3B59}.Release-ENG|Any CPU.Build.0 = Release-ENG|Any CPU
+		{E05C03AC-C782-46BA-A43F-D66B06421790}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E05C03AC-C782-46BA-A43F-D66B06421790}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E05C03AC-C782-46BA-A43F-D66B06421790}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E05C03AC-C782-46BA-A43F-D66B06421790}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E05C03AC-C782-46BA-A43F-D66B06421790}.Release-ENG|Any CPU.ActiveCfg = Release|Any CPU
+		{E05C03AC-C782-46BA-A43F-D66B06421790}.Release-ENG|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B65001A1-C47E-4EEC-BF61-BC79E63E70D8}
 	EndGlobalSection
 EndGlobal

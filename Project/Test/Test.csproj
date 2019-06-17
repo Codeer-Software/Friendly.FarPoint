@@ -65,14 +65,14 @@
     <Reference Include="Codeer.Friendly.Windows.Grasp.3.5, Version=2.11.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Codeer.Friendly.Windows.Grasp.2.11.1\lib\net35\Codeer.Friendly.Windows.Grasp.3.5.dll</HintPath>
     </Reference>
-    <Reference Include="Codeer.Friendly.Windows.NativeStandardControls, Version=2.12.7.0, Culture=neutral, PublicKeyToken=90759bf0c8b8639e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Codeer.Friendly.Windows.NativeStandardControls.2.12.7\lib\net20\Codeer.Friendly.Windows.NativeStandardControls.dll</HintPath>
+    <Reference Include="Codeer.Friendly.Windows.NativeStandardControls, Version=2.12.9.0, Culture=neutral, PublicKeyToken=90759bf0c8b8639e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Codeer.Friendly.Windows.NativeStandardControls.2.12.9\lib\net20\Codeer.Friendly.Windows.NativeStandardControls.dll</HintPath>
     </Reference>
-    <Reference Include="Codeer.Friendly.Windows.NativeStandardControls.Generator, Version=2.12.7.0, Culture=neutral, PublicKeyToken=eea982eb65b72dea, processorArchitecture=MSIL">
-      <HintPath>..\packages\Codeer.Friendly.Windows.NativeStandardControls.2.12.7\lib\net20\Codeer.Friendly.Windows.NativeStandardControls.Generator.dll</HintPath>
+    <Reference Include="Codeer.Friendly.Windows.NativeStandardControls.Generator, Version=2.12.9.0, Culture=neutral, PublicKeyToken=eea982eb65b72dea, processorArchitecture=MSIL">
+      <HintPath>..\packages\Codeer.Friendly.Windows.NativeStandardControls.2.12.9\lib\net20\Codeer.Friendly.Windows.NativeStandardControls.Generator.dll</HintPath>
     </Reference>
-    <Reference Include="Codeer.TestAssistant.GeneratorToolKit, Version=3.4.2.0, Culture=neutral, PublicKeyToken=f7af39ab9bcf13fe, processorArchitecture=MSIL">
-      <HintPath>..\packages\Codeer.TestAssistant.GeneratorToolKit.3.4.2\lib\net20\Codeer.TestAssistant.GeneratorToolKit.dll</HintPath>
+    <Reference Include="Codeer.TestAssistant.GeneratorToolKit, Version=3.4.4.0, Culture=neutral, PublicKeyToken=f7af39ab9bcf13fe, processorArchitecture=MSIL">
+      <HintPath>..\packages\Codeer.TestAssistant.GeneratorToolKit.3.4.4\lib\net20\Codeer.TestAssistant.GeneratorToolKit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Ong.Friendly.FormsStandardControls, Version=2.12.3.0, Culture=neutral, PublicKeyToken=ee7fcdb5644bd140, processorArchitecture=MSIL">
@@ -122,6 +122,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

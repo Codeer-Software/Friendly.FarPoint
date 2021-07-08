@@ -36,13 +36,13 @@ using (var app = new WindowsAppFriend(process))
     sheet = spread.ActiveSheet;
     
     //cell.
-    var cell = sheet.Cells[0. 3];
+    var cell = sheet.Cells[0, 3];
     cell = sheet.ActiveCell;
     string text = cell.Text;
     int rowIndex = cell.Row.Index;
     int rowIndex2 = cell.Row.Index2;
-    int rowIndex = cell.Column.Index;
-    int rowIndex2 = cell.Column.Index2;
+    int columnIndex = cell.Column.Index;
+    int columnIndex2 = cell.Column.Index2;
     sheet.EmulateChangeActiveCell(3, 5, true);
     sheet.EmulateAddSelection(1, 2, 3, 5);
     sheet.EmulateRemoveSelection(1, 2, 3, 5);
